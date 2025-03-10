@@ -45,8 +45,8 @@ function countActiveCameras() {
   return activeCameras;
 }
 
-// Function to toggle the camera
-function toggleCamera() {
+// Function to toggle the camera on or off
+function toggleCamera(turnOn) {
   try {
     // Find the camera button
     const cameraButton = document.querySelector(
@@ -61,13 +61,15 @@ function toggleCamera() {
     // Check if the camera is currently on
     const isCameraOn = cameraButton.getAttribute('aria-pressed') === 'true';
 
-    // If the camera is on, do nothing
-    if (isCameraOn) {
-      console.log('Camera is already on.');
-    } else {
-      // Otherwise, turn the camera on
+    // Toggle the camera based on the `turnOn` parameter
+    if (turnOn && !isCameraOn) {
       console.log('Turning camera on...');
       cameraButton.click();
+    } else if (!turnOn && isCameraOn) {
+      console.log('Turning camera off...');
+      cameraButton.click();
+    } else {
+      console.log(`Camera is already ${turnOn ? 'on' : 'off'}. No action taken.`);
     }
   } catch (error) {
     console.error('Error toggling camera:', error);
@@ -81,12 +83,18 @@ function monitorAndToggleCamera() {
 
     console.log('Active Camera Count:', activeCameraCount);
 
-    // If there are more than 1 active cameras, turn on your camera
-    if (activeCameraCount > 1) {
-      console.log('Condition met: Active cameras > 1. Attempting to toggle camera...');
-      toggleCamera();
-    } else {
-      console.log('Condition not met: Active cameras <= 1. No action taken.');
+    // Define the threshold for active cameras
+    const activeCameraThreshold = 1; // Change this value as needed
+
+    // If there are more than the threshold active cameras, turn on your camera
+    if (activeCameraCount > activeCameraThreshold) {
+      console.log('Condition met: Active cameras > threshold. Attempting to turn camera on...');
+      toggleCamera(true); // Turn camera on
+    } 
+    // If there are less than or equal to the threshold active cameras, turn off your camera
+    else {
+      console.log('Condition not met: Active cameras <= threshold. Attempting to turn camera off...');
+      toggleCamera(false); // Turn camera off
     }
   } catch (error) {
     console.error('Error monitoring and toggling camera:', error);
