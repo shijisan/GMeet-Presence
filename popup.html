@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Meet Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+      position: relative; /* Required for absolute positioning of the close button */
+      min-width: 300px;
+    }
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #555;
+    }
+    span {
+      font-weight: bold;
+      color: #007bff;
+    }
+    button {
+      padding: 4px 16px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #close-popup {
+      background-color: #ff4d4d;
+      padding: 4px 16px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    #close-popup:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Google Meet Tracker</h1>
+  <p>Total Participants: <span id="participant-count">0</span></p>
+  <p>Active Cameras: <span id="camera-count">0</span></p>
+  <button id="start-tracking">Start Tracking</button>
+  <button id="close-popup">Close</button>
+  <script src="popup.js"></script>
+</body>
+</html>
