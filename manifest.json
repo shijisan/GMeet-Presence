@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Google Meet Participant Tracker",
+  "name": "GMeet-Presence",
   "version": "1.0",
-  "description": "Counts participants in a Google Meet call and tracks how many have their cameras on.",
+  "description": "Pair this with OBS Studio Virtual Camera with Video Source in order to get attendance in camera required school online classes.ameras on.",
   "permissions": [
     "tabs",
     "activeTab",
