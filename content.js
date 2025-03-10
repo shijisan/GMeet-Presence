@@ -18,6 +18,13 @@ function countActiveCameras() {
     // Find all participant elements
     document.querySelectorAll('.oZRSLe').forEach(participant => {
       try {
+        // Exclude your own video tile
+        const isYourTile = participant.querySelector('[data-self-name]');
+        if (isYourTile) {
+          console.log('Skipping your own tile...');
+          return;
+        }
+
         // Check if the participant has the 'S7urwe' class
         const isActiveCameraClass = participant.querySelector('.S7urwe') !== null;
 
@@ -25,7 +32,7 @@ function countActiveCameras() {
         const videoElements = participant.querySelectorAll('video');
         let hasVisibleVideo = Array.from(videoElements).some(video => {
           const style = window.getComputedStyle(video);
-          return style.display !== 'none';
+          return style.display !== 'none' && video.readyState > 0; // Ensure the video is loaded
         });
 
         // Determine if the camera is active
@@ -117,7 +124,9 @@ function initializeObserver() {
     }
 
     // Monitor active cameras and toggle the camera if needed
-    monitorAndToggleCamera();
+    setTimeout(() => {
+      monitorAndToggleCamera();
+    }, 500); // Add a small delay to avoid race conditions
   });
 
   // Start observing DOM changes
